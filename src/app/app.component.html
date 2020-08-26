@@ -1,0 +1,34 @@
+<div class="example-header mat-elevation-z8">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Escriba algo para filtrar">
+  </mat-form-field>
+</div>
+<br>
+<div class="example-container mat-elevation-z8">
+  <mat-table [dataSource]="dataSource" matSort>
+    <!--  Columna ID-->
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna Apellido -->
+    <ng-container matColumnDef="mass">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Peso </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.mass}} </mat-cell>
+    </ng-container>
+
+    <!-- Columna Nombre-->
+    <ng-container matColumnDef="height">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Tamaño </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.height}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns" class="encabezado"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+    </mat-row>
+  </mat-table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" [pageSize]="25" [showFirstLastButtons]="true"></mat-paginator>
+</div>
